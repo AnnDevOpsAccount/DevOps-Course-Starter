@@ -52,3 +52,10 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Student updated version:
+Exercise 1 - January 2022 - Ann Davey
+
+GitPod URL for Ann's version of code:
+
+https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter 
