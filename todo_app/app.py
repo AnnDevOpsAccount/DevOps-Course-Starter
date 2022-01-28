@@ -15,3 +15,10 @@ def addTask():
     newTask = request.form['TaskName']
     session_items.add_item(newTask)
     return index()
+    
+@app.route('/endTask', methods=['POST'])
+def endTask():
+    itemToUpdate = session_items.get_item(request.form['TaskNo'])
+    itemToUpdate.update({"status":"complete"})
+    session_items.save_item(itemToUpdate)
+    return index()
