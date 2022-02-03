@@ -11,14 +11,14 @@ def index():
     return render_template('index.html', items=items)
 
 @app.route('/addTask', methods=['POST'])
-def addTask():
-    newTask = request.form['TaskName']
-    session_items.add_item(newTask)
+def add_task():
+    new_task = request.form['TaskName']
+    session_items.add_item(new_task)
     return index()
     
 @app.route('/endTask', methods=['POST'])
-def endTask():
-    itemToUpdate = session_items.get_item(request.form['TaskNo'])
-    itemToUpdate.update({"status":"complete"})
-    session_items.save_item(itemToUpdate)
+def end_task():
+    item_to_Update = session_items.get_item(request.form['TaskNo'])
+    item_to_Update.update({"status":"complete"})
+    session_items.save_item(item_to_Update)
     return index()
