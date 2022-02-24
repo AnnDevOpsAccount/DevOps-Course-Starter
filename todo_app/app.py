@@ -9,12 +9,17 @@ app.config.from_object(Config())
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=trello_items.get_items(app.config['TRELLO_BOARD_KEY'], app.config['TRELLO_BOARD_TOKEN']))
+    return render_template('index.html', 
+                            items=trello_items.get_items( app.config['TRELLO_BOARD_KEY'], 
+                                                          app.config['TRELLO_BOARD_TOKEN']) )
 
 @app.route('/addTask', methods=['POST'])
 def add_task():
     new_task = request.form['TaskName']
-    trello_items.add_item(new_task)
+    trello_items.add_item(  app.config['TRELLO_BOARD_KEY'],
+                            app.config['TRELLO_BOARD_TOKEN'],
+                            app.config['TRELLO_TO_DO_LIST_ID'],
+                            new_task )
     return index()
     
 @app.route('/endTask', methods=['POST'])

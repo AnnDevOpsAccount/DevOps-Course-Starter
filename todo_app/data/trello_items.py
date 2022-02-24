@@ -1,6 +1,7 @@
 import os
 import requests
 get_items_url = "https://api.trello.com/1/boards/6212689e46f57218f07af552/lists/open"
+add_item_url = "https://api.trello.com/1/cards"
 
 def get_items(key, token):
     items = []
@@ -16,8 +17,12 @@ def get_items(key, token):
             items.append(card)
     return items
 
-def add_item(title):
-    # ToDo
+def add_item(key, token, list_id, title):
+    querystring = { "key": key,
+                    "token":token,
+                    "idList":list_id,
+                    "name":title }
+    response = requests.request("POST", add_item_url, params=querystring)
     return None
 
 def save_item(item):
