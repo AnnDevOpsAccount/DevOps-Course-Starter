@@ -15,3 +15,7 @@ class Config:
         self.TRELLO_TO_DO_LIST_ID = os.environ.get('TRELLO_TO_DO_LIST_ID')    
         if not self.TRELLO_TO_DO_LIST_ID:
            raise ValueError("No TRELLO_TO_DO_LIST_ID set for Flask application. Did you follow the setup instructions?")
+
+        self.TRELLO_DONE_LIST_ID = os.environ.get('TRELLO_DONE_LIST_ID')     
+        if not self.TRELLO_DONE_LIST_ID:
+            raise ValueError("No TRELLO_DONE_LIST_ID set for Flask application. Did you follow the setup instructions?")       

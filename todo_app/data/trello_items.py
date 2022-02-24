@@ -1,14 +1,14 @@
 import os
 import requests
-get_items_url = "https://api.trello.com/1/boards/6212689e46f57218f07af552/lists/open"
-add_item_url = "https://api.trello.com/1/cards"
+board_url = "https://api.trello.com/1/boards/6212689e46f57218f07af552/lists/open"
+items_url = "https://api.trello.com/1/cards"
 
 def get_items(key, token):
     items = []
     querystring = { "key": key,
                     "token":token,
                     "cards":"open"}
-    response = requests.request("GET", get_items_url, params=querystring)
+    response = requests.request("GET", board_url, params=querystring)
     response_json = response.json()     
     for trello_list in response_json:
         for card in trello_list['cards']:
@@ -22,9 +22,12 @@ def add_item(key, token, list_id, title):
                     "token":token,
                     "idList":list_id,
                     "name":title }
-    response = requests.request("POST", add_item_url, params=querystring)
+    response = requests.request("POST", items_url, params=querystring)
     return None
 
-def save_item(item):
-    # ToDo
+def complete_item(key, token, list_id, item_id):
+    querystring = { "key": key,
+                    "token":token,
+                    "idList":list_id}
+    response = requests.request("PUT", items_url + '/' + item_id, params=querystring)
     return None    
