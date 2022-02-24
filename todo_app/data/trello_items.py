@@ -1,5 +1,7 @@
 import os
 import requests
+from todo_app.item import Item
+
 board_url = "https://api.trello.com/1/boards/6212689e46f57218f07af552/lists/open"
 items_url = "https://api.trello.com/1/cards"
 
@@ -12,9 +14,7 @@ def get_items(key, token):
     response_json = response.json()     
     for trello_list in response_json:
         for card in trello_list['cards']:
-            card['status'] = trello_list['name']
-            card['title'] = card ['name']
-            items.append(card)
+            items.append (Item.from_trello_card(card, trello_list))
     return items
 
 def add_item(key, token, list_id, title):
