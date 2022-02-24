@@ -2,10 +2,10 @@ import os
 import requests
 get_items_url = "https://api.trello.com/1/boards/6212689e46f57218f07af552/lists/open"
 
-def get_items():
+def get_items(key, token):
     items = []
-    querystring = { "key": os.getenv("TRELLO_BOARD_KEY"),
-                    "token":os.getenv("TRELLO_BOARD_TOKEN"),
+    querystring = { "key": key,
+                    "token":token,
                     "cards":"open"}
     response = requests.request("GET", get_items_url, params=querystring)
     response_json = response.json()     

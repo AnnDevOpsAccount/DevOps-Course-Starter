@@ -9,7 +9,7 @@ app.config.from_object(Config())
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=trello_items.get_items())
+    return render_template('index.html', items=trello_items.get_items(app.config['TRELLO_BOARD_KEY'], app.config['TRELLO_BOARD_TOKEN']))
 
 @app.route('/addTask', methods=['POST'])
 def add_task():
