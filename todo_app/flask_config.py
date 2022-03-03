@@ -12,6 +12,10 @@ class Config:
         if not self.TRELLO_BOARD_TOKEN:
             raise ValueError("No TRELLO_BOARD_TOKEN set for Flask application. Did you follow the setup instructions?")
 
+        self.TRELLO_BOARD_ID = os.environ.get('TRELLO_BOARD_ID')
+        if not self.TRELLO_BOARD_ID:
+            raise ValueError("No TRELLO_BOARD_ID set for Flask application. Did you follow the setup instructions?")
+
         self.TRELLO_TO_DO_LIST_ID = os.environ.get('TRELLO_TO_DO_LIST_ID')    
         if not self.TRELLO_TO_DO_LIST_ID:
            raise ValueError("No TRELLO_TO_DO_LIST_ID set for Flask application. Did you follow the setup instructions?")
