@@ -10,30 +10,36 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
-      <div class="row" >
-        <ul class="list-group mb-4">
+      <table style="width: 70%; padding: 15px; margin-bottom: 20px;">    
           {% for item in items %}
-          <li>{{item.title}} - {{item.status}}      
-            <form style="display: inline-block; padding-bottom: 15px;" action="/endTask" method="post">    
-              <input type="hidden" name="TaskNo" value="{{item.id}}" required>
-              <input type="submit" value="Done">
-            </form>            
-            {% endfor %}
-          </li>  
-        </ul>
-    </div>
+          <tr style="border: 1px solid; text-align: left; vertical-align: center; height: 50px;">
+            <td style= "padding: 15px;">{{item.title}}</td>
+            <td>{{item.status}}</td>
+            {% if item.status != 'Done' %} 
+            <td>
+                <form action="/endTask" method="post">    
+                  <input type="hidden" name="TaskNo" value="{{item.id}}" required>
+                  <input type="submit" value="Done">
+                </form>                   
+            </td>   
+            {% endif %}    
+          </tr>
+        {% endfor %}          
+      </table>
     </div>
   </div>
 
   <h2>Add new item</h2>
-  <form action="/addTask" method="post">    
-    <div class="row">
-      <label for="name">New task name: </label>
-    </div>
-    <div class="row">
-      <input type="text" name="TaskName" required>
-      <input type="submit" value="Enter">
-    </div>
-  </form>
+  <table style="width: 70%; padding: 15px; margin-bottom: 20px;">    
+    <tr style="border: 1px solid; text-align: left; vertical-align: center; height: 50px;">
+      <td style= "padding: 15px;">
+        <form action="/addTask" method="post">    
+          <label for="name">New task name: </label>
+          <input style= "min-width: 250px;" type="text" name="TaskName" required>
+          <input type="submit" value="Enter">
+        </form>
+      </td>
+    </tr>
+  </table>
 
 {% endblock %}
