@@ -4,6 +4,7 @@ from todo_app.flask_config import Config
 import os
 import requests
 from todo_app.board import Board
+from todo_app.viewModel import ViewModel
 
 app = Flask(__name__)
 app.config.from_object(Config())
@@ -16,7 +17,8 @@ board = Board ( app.config['TRELLO_BOARD_ID'],
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=trello_items.get_items( board ))
+    item_view_model = ViewModel(board)
+    return render_template('index.html', view_model=item_view_model)
 
 @app.route('/addTask', methods=['POST'])
 def add_task():
