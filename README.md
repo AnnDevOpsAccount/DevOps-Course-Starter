@@ -65,3 +65,11 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 GitPod URL for Ann's version of code:
 
 https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter 
+
+## Running the Tests
+
+Install pytest:
+- pip install pytest
+
+Run tests, from command prompt:
+- pytest
