@@ -42,7 +42,7 @@ def test_mock_view_model_get_to_do_items(monkeypatch):
     #arrange:  set up view model 
     item_view_model = set_up_view_model (monkeypatch)
 
-    #act: get all view model items  
+    #act: get to do view model items  
     test_result_items = item_view_model.to_do_items
 
     #assert: correct number of items returned
@@ -54,8 +54,8 @@ def test_mock_view_model_get_doing_items(monkeypatch):
     #arrange:  set up view model 
     item_view_model = set_up_view_model (monkeypatch)
 
-    #act: get all view model items  
-    test_result_items = item_view_model.to_do_items
+    #act: get doing view model items  
+    test_result_items = item_view_model.doing_items
 
     #assert: correct number of items returned
     assert len (test_result_items) == 3
@@ -66,8 +66,8 @@ def test_mock_view_model_get_done_items(monkeypatch):
     #arrange:  set up view model 
     item_view_model = set_up_view_model (monkeypatch)
 
-    #act: get all view model items  
-    test_result_items = item_view_model.to_do_items
+    #act: get done view model items  
+    test_result_items = item_view_model.done_items
 
     #assert: correct number of items returned
     assert len (test_result_items) == 2
