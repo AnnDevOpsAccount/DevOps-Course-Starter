@@ -66,10 +66,18 @@ GitPod URL for Ann's version of code:
 
 https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter 
 
-## Running the Tests
+## Running the Unit Tests
 
-Install pytest:
+Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
+
+To install pytest:
 - pip install pytest
 
-Run tests, from command prompt:
+To run all tests, from command prompt:
 - pytest
+
+To run specific test class from command promy (using relative path) - for 
+example:
+- pytest tests/test_view_mode.py
+
+Add -v for more verbose test output that is standard
