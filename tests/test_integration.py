@@ -1,6 +1,6 @@
 import os
 import pytest
-import requests
+import requests 
 from todo_app import app
 from dotenv import load_dotenv, find_dotenv
 
@@ -8,8 +8,6 @@ from dotenv import load_dotenv, find_dotenv
 def client():
     # Use our test integration config instead of the 'real' version
     file_path = find_dotenv('.env.test')
-    print(file_path)
-
     load_dotenv(file_path, override=True)
 
     # Create the new app.
@@ -43,6 +41,7 @@ def stub(url, params):
 def test_index_page(monkeypatch, client):
     # Replace requests.get(url) with our own function
     monkeypatch.setattr(requests, 'get', stub)
+    #monkeypatch.setattr(requests, 'request', stub)
 
     # Make a request to our app's index page
     response = client.get('/')
