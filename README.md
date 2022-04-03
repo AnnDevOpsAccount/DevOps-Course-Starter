@@ -80,4 +80,5 @@ To run specific test class from command promy (using relative path) - for
 example:
 - pytest tests/test_view_mode.py
 
-Add -v for more verbose test output that is standard
+Add -v for more verbose test output that is standard eg
+- pytest tests/test_integration.py -v
