@@ -71,14 +71,16 @@ https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter
 Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
 
 To install pytest:
-- pip install pytest
+`pip install pytest `
 
 To run all tests, from command prompt:
-- pytest
+`pytest`
 
-To run specific test class from command promy (using relative path) - for 
+To run specific test class from command promt (using relative path) - for 
 example:
-- pytest tests/test_view_mode.py
+`pytest tests/test_view_mode.py`
 
 Add -v for more verbose test output that is standard eg
-- pytest tests/test_integration.py -v
+`pytest tests/test_integration.py -v`
+
+Also tests can be run in VSC IDE via Test explorer

@@ -13,7 +13,6 @@ def get_items( board ):
                     "cards":"open"}                 
     response = requests.get(board_url + board.id + "/lists", params=querystring)
     response_json = response.json()     
-    print(response_json)
     for trello_list in response_json:
         for card in trello_list['cards']:
             items.append (Item.from_trello_card(card, trello_list))
