@@ -11,7 +11,7 @@ def get_items( board ):
     querystring = { "key": board.key,
                     "token":board.token,
                     "cards":"open"}                 
-    response = requests.request("GET", board_url + board.id + "/lists/open", params=querystring)
+    response = requests.get(board_url + board.id + "/lists", params=querystring)
     response_json = response.json()     
     print(response_json)
     for trello_list in response_json:
@@ -24,10 +24,10 @@ def add_item( board, title):
                     "token": board.token,
                     "idList": board.to_do_list,
                     "name":title }
-    response = requests.request("POST", items_url, params=querystring)
+    response = requests.post(items_url, params=querystring)
 
 def complete_item(board, item_id):
     querystring = { "key": board.key,
                     "token": board.token,
                     "idList":board.done_list}
-    response = requests.request("PUT", items_url + '/' + item_id, params=querystring)   
+    response = requests.put(items_url + '/' + item_id, params=querystring)   

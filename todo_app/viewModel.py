@@ -2,8 +2,8 @@ from todo_app.data import trello_items
 
 class ViewModel:
     def __init__(self, board):
-        self._items = trello_items.get_items( board )
 
+        self._items = trello_items.get_items( board )
     @property
     def items(self):
         return self._items
@@ -12,7 +12,7 @@ class ViewModel:
     def to_do_items(self):
        to_do_items = []
        for item in self._items:
-           if item['status'] == "To Do":
+           if item.status == "To Do":
             to_do_items.append(item)
        return to_do_items
 
@@ -20,7 +20,7 @@ class ViewModel:
     def doing_items(self):
        doing_items = []
        for item in self._items:
-           if item['status'] == "Doing":
+           if item.status == "Doing":
             doing_items.append(item)
        return doing_items
        
@@ -28,6 +28,6 @@ class ViewModel:
     def done_items(self):
        done_items = []
        for item in self._items:
-           if item['status'] == "Done":
+           if item.status == "Done":
             done_items.append(item)
        return done_items

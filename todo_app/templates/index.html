@@ -11,7 +11,7 @@
     <div class="col-md-12">
       <h2>Items</h2>
       <table style="width: 70%; padding: 15px; margin-bottom: 20px;">    
-          {% for item in view_model.items %}
+          {% for item in view_model.to_do_items %}
           <tr style="border: 1px solid; text-align: left; vertical-align: center; height: 50px;">
             <td style= "padding: 15px;">{{item.title}}</td>
             <td>{{item.status}}</td>
