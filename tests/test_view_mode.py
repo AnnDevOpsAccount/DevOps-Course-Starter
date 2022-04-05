@@ -5,9 +5,7 @@ from todo_app.viewModel import ViewModel
 from todo_app.item import Item
 
 TEST_BOARD = Board ('ID', 'KEY', 'TOKEN', 'TO_DO_LIST_ID' , 'DONE_LIST_ID')
-
-def mock_get_items(board):
-    TEST_ITEMS = [
+TEST_ITEMS = [
         Item(1, 'Don tights and save world', 'To Do'),
         Item(2, 'Sit on sofa', 'Doing'),
         Item(3, 'Play Wordle', 'Doing'),
@@ -15,6 +13,8 @@ def mock_get_items(board):
         Item(5, 'Play That Funky Music', 'Done'),
         Item(6, 'Eat chocolate', 'Done')
     ]
+
+def mock_get_items(board):
     return TEST_ITEMS   
 
 
@@ -34,7 +34,7 @@ def test_mock_view_model_get_all_items(monkeypatch):
     test_result_items = item_view_model.items
 
     #assert: the mocked items are returned
-    # assert test_result_items == mock_get_items()
+    assert test_result_items == TEST_ITEMS
     assert len (test_result_items) == 6
 
 
