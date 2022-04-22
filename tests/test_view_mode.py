@@ -5,17 +5,20 @@ from todo_app.viewModel import ViewModel
 from todo_app.item import Item
 
 TEST_BOARD = Board ('ID', 'KEY', 'TOKEN', 'TO_DO_LIST_ID' , 'DONE_LIST_ID')
-TEST_ITEMS = [
-        Item(1, 'Don tights and save world', 'To Do'),
-        Item(2, 'Sit on sofa', 'Doing'),
-        Item(3, 'Play Wordle', 'Doing'),
-        Item(4, 'Play Chess', 'Doing'),
-        Item(5, 'Play That Funky Music', 'Done'),
-        Item(6, 'Eat chocolate', 'Done')
-    ]
+
+def get_test_items():
+    test_items = [
+            Item(1, 'Don tights and save world', 'To Do'),
+            Item(2, 'Sit on sofa', 'Doing'),
+            Item(3, 'Play Wordle', 'Doing'),
+            Item(4, 'Play Chess', 'Doing'),
+            Item(5, 'Play That Funky Music', 'Done'),
+            Item(6, 'Eat chocolate', 'Done')
+        ]
+    return test_items
 
 def mock_get_items(board):
-    return TEST_ITEMS   
+    return get_test_items()  
 
 
 def set_up_view_model (monkeypatch):
@@ -34,7 +37,9 @@ def test_mock_view_model_get_all_items(monkeypatch):
     test_result_items = item_view_model.items
 
     #assert: the mocked items are returned
-    assert test_result_items == TEST_ITEMS
+    test_items = get_test_items()
+    for i in range(0, 5):
+        assert test_result_items[i].title ==  test_items[i].title
     assert len (test_result_items) == 6
 
 
@@ -47,6 +52,7 @@ def test_mock_view_model_get_to_do_items(monkeypatch):
     test_result_items = item_view_model.to_do_items
 
     #assert: correct number of items returned
+    assert test_result_items[0].title == 'Don tights and save world'
     assert len (test_result_items) == 1
     
 
@@ -59,6 +65,9 @@ def test_mock_view_model_get_doing_items(monkeypatch):
     test_result_items = item_view_model.doing_items
 
     #assert: correct number of items returned
+    assert test_result_items[0].id == 2
+    assert test_result_items[1].id == 3
+    assert test_result_items[2].id == 4
     assert len (test_result_items) == 3
     
 
@@ -72,3 +81,5 @@ def test_mock_view_model_get_done_items(monkeypatch):
 
     #assert: correct number of items returned
     assert len (test_result_items) == 2
+    assert test_result_items[0].id == 5
+    assert test_result_items[1].id == 6
