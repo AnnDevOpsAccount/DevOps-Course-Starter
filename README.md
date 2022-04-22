@@ -70,11 +70,9 @@ https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter
 
 Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
 
-To install pytest:
-`pip install pytest `
 
 To run all tests, from command prompt:
-`pytest`
+`poetry run pytest`
 
 To run specific test class from command promt (using relative path) - for 
 example:
