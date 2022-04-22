@@ -4,26 +4,33 @@ from todo_app.flask_config import Config
 import os
 import requests
 from todo_app.board import Board
+from todo_app.viewModel import ViewModel
 
-app = Flask(__name__)
-app.config.from_object(Config())
-
-board = Board ( app.config['TRELLO_BOARD_ID'], 
+def create_board(app):
+    app.config.from_object(Config())
+    return Board ( app.config['TRELLO_BOARD_ID'], 
                 app.config['TRELLO_BOARD_KEY'], 
                 app.config['TRELLO_BOARD_TOKEN'], 
                 app.config['TRELLO_TO_DO_LIST_ID'], 
                 app.config['TRELLO_DONE_LIST_ID'])
 
-@app.route('/')
-def index():
-    return render_template('index.html', items=trello_items.get_items( board ))
+def create_app():
+    app = Flask(__name__)  
+    board = create_board(app)  
 
-@app.route('/addTask', methods=['POST'])
-def add_task():
-    trello_items.add_item(board , request.form['TaskName'])
-    return index()
-    
-@app.route('/endTask', methods=['POST'])
-def end_task():
-    trello_items.complete_item(board, request.form['TaskNo'])
-    return index()
+    @app.route('/')
+    def index():
+        item_view_model = ViewModel(board)
+        return render_template('index.html', view_model=item_view_model)
+
+    @app.route('/addTask', methods=['POST'])
+    def add_task():
+        trello_items.add_item(board , request.form['TaskName'])
+        return index()
+        
+    @app.route('/endTask', methods=['POST'])
+    def end_task():
+        trello_items.complete_item(board, request.form['TaskNo'])
+        return index()
+
+    return app

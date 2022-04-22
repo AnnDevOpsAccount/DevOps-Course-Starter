@@ -65,3 +65,20 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 GitPod URL for Ann's version of code:
 
 https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter 
+
+## Running the Unit Tests
+
+Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
+
+
+To run all tests, from command prompt:
+`poetry run pytest`
+
+To run specific test class from command promt (using relative path) - for 
+example:
+`pytest tests/test_view_mode.py`
+
+Add -v for more verbose test output that is standard eg
+`pytest tests/test_integration.py -v`
+
+Also tests can be run in VSC IDE via Test explorer
