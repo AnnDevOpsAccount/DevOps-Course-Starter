@@ -1,0 +1,86 @@
+- name: Install to-do app on new web servers
+  hosts: webservers
+  remote_user: ec2-user
+
+- hosts: all
+  vars_prompt:
+  - name: boardKey
+    prompt: enter boardKey value
+    default: '1e8585fa62ab610666a95c32ad47cf37'
+
+  tasks:
+  - name: Install the latest versions of git and python
+    become: yes
+    yum:
+      name: git
+      state: latest
+      name: python3
+      state: latest
+
+  - name: Create to-do-app folder
+    ansible.builtin.file:
+      path: /opt/to-do-app
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes
+
+  - name: Create to-do-app/set-up folder
+    ansible.builtin.file:
+      path: /opt/to-do-app/set-up
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes
+
+  - name: copy check_poetry.sh 
+    ansible.builtin.copy:
+      src: check_poetry.sh
+      dest: /opt/to-do-app/set-up/check_poetry.sh
+      force: yes
+      mode: '777'
+
+  - name: Check if poetry installed  
+    become: yes
+    ansible.builtin.shell: /opt/to-do-app/set-up/check_poetry.sh
+    ignore_errors: yes
+    register: poetry_install_check        
+  
+  - name: copy install poetry.sh 
+    when: "poetry_install_check.rc != 0"    
+    ansible.builtin.copy:
+      src: install_poetry.sh
+      dest: /opt/to-do-app/set-up/install_poetry.sh
+      force: yes
+      mode: '777'
+
+  - name: install poetry
+    when: "poetry_install_check.rc != 0"      
+    become: yes
+    ansible.builtin.shell: /opt/to-do-app/set-up/install_poetry.sh
+
+  - name: Create to-do-app/app folder
+    ansible.builtin.file:
+      path: /opt/to-do-app/app
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes
+
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/AnnDevOpsAccount/DevOps-Course-Starter'
+      dest: /opt/to-do-app/app
+      version: main
+      
+  - name: run poetry install
+    become: yes
+    ansible.builtin.command: /home/ec2-user/.poetry/bin/poetry install
+    args:
+      chdir: /opt/to-do-app/app
+
+  - name: create .env using Jinja2
+    template:
+      src: env_template.j2
+      dest: /opt/to-do-app/app/.env    
+      force: yes
