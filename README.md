@@ -88,3 +88,11 @@ Also tests can be run in VSC IDE via Test explorer
 `ansible-playbook to-do-app-playbook.yml -i inventory.ini`
 
 -v can optionally be added for more verbose output
+
+## To view logs on managed server systemd task
+
+`SSH onto the managed node` 
+
+`cd cd /opt/to-do-app/app`
+
+`$ journalctl -u todoapp`

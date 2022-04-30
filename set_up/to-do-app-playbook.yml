@@ -6,7 +6,7 @@
   vars_prompt:
   - name: boardKey
     prompt: enter boardKey value
-    default: '1e8585fa62ab610666a95c32ad47cf37'
+    default: 1e8585fa62ab610666a95c32ad47cf37
 
   tasks:
   - name: Install the latest versions of git and python
@@ -84,3 +84,17 @@
       src: env_template.j2
       dest: /opt/to-do-app/app/.env    
       force: yes
+
+  - name: copy todoapp.service
+    ansible.builtin.copy:
+      src: todoapp.service
+      dest: /etc/systemd/system/
+      mode: '777'
+    become: yes
+      
+  - name: run todoapp.service
+    ansible.builtin.systemd:
+      state: restarted
+      name: todoapp
+      daemon_reload: yes    
+    become: yes
