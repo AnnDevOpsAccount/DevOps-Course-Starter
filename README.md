@@ -82,3 +82,9 @@ Add -v for more verbose test output that is standard eg
 `pytest tests/test_integration.py -v`
 
 Also tests can be run in VSC IDE via Test explorer
+
+## To provision a VM from an Ansible Control Node
+
+`ansible-playbook to-do-app-playbook.yml -i inventory.ini`
+
+-v can optionally be added for more verbose output
