@@ -54,7 +54,7 @@
       force: yes
       mode: '777'
 
-  - name: install poetry
+  - name: install poetry onto server
     when: "poetry_install_check.rc != 0"      
     become: yes
     ansible.builtin.shell: /opt/to-do-app/set-up/install_poetry.sh
@@ -73,7 +73,7 @@
       dest: /opt/to-do-app/app
       version: main
       
-  - name: run poetry install
+  - name: run poetry install command
     become: yes
     ansible.builtin.command: /home/ec2-user/.poetry/bin/poetry install
     args:

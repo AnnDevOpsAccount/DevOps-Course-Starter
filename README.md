@@ -89,10 +89,12 @@ Also tests can be run in VSC IDE via Test explorer
 
 -v can optionally be added for more verbose output
 
+For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18.134.59.27 
+
 ## To view logs on managed server systemd task
 
-`SSH onto the managed node` 
+`SSH onto the managed node |(for mod 4 = Managed node IP: 3.9.36.242 = ssh ec2-user@3.9.36.242  )` 
 
-`cd cd /opt/to-do-app/app`
+`$ cd /opt/to-do-app/app`
 
 `$ journalctl -u todoapp`
