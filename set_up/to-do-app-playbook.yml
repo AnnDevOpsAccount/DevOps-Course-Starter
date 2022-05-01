@@ -6,7 +6,6 @@
   vars_prompt:
   - name: boardKey
     prompt: enter boardKey value
-    default: 1e8585fa62ab610666a95c32ad47cf37
 
   tasks:
   - name: Install the latest versions of git and python
