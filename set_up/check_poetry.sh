@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
-cd $HOME/.local/bin
+cd /home/ec2-user/.local/share/pypoetry/venv/bin
 poetry --version

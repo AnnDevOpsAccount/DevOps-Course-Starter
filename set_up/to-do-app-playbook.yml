@@ -67,10 +67,11 @@
     become: yes
 
   - name: Git checkout
+    become: yes  
     ansible.builtin.git:
       repo: 'https://github.com/AnnDevOpsAccount/DevOps-Course-Starter'
       dest: /opt/to-do-app/app
-      version: main
+      version: main  
       
   - name: run poetry install command
     become: yes
