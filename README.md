@@ -98,3 +98,9 @@ For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18
 `$ cd /opt/to-do-app/app`
 
 `$ journalctl -u todoapp`
+
+## To view app running on managed server
+
+view in browser at port 5000 of managed server for example:
+
+`http://3.9.36.242:5000/`
