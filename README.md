@@ -82,3 +82,23 @@ Add -v for more verbose test output that is standard eg
 `pytest tests/test_integration.py -v`
 
 Also tests can be run in VSC IDE via Test explorer
+
+## To provision a VM from an Ansible Control Node
+
+`ansible-playbook to-do-app-playbook.yml -i inventory.ini`
+
+-v can optionally be added for more verbose output
+
+For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18.134.59.27 
+
+## To view logs on managed server systemd task
+
+`SSH onto the managed node |(for mod 4 = Managed node IP: 3.9.36.242 = ssh ec2-user@3.9.36.242  )` 
+
+`$ journalctl -u todoapp`
+
+## To view app running on managed server
+
+view in browser at port 5000 of managed server for example:
+
+`http://3.9.36.242:5000/`

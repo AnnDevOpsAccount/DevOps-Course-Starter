@@ -1,0 +1,79 @@
+- name: Install to-do app on new web servers
+  hosts: webservers
+  remote_user: ec2-user
+
+- hosts: all
+  vars_prompt:
+  - name: boardKey
+    prompt: enter boardKey value
+
+
+  tasks:
+  - name: Install the latest version of git and python
+    become: yes
+    yum:
+      name: 
+        - git
+        - python3
+      state: latest
+
+  - name: Create to-do-app folder
+    ansible.builtin.file:
+      path: /opt/to-do-app
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes
+
+  - name: Create to-do-app/set-up folder
+    ansible.builtin.file:
+      path: /opt/to-do-app/set-up
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes  
+
+  - name: install poetry, if not already there
+    ansible.builtin.shell: curl -sSL https://install.python-poetry.org | python3 -
+    args:
+      creates: /home/ec2-user/.local/bin/poetry
+
+  - name: Create to-do-app/app folder
+    ansible.builtin.file:
+      path: /opt/to-do-app/app
+      state: directory
+      owner: ec2-user
+      mode: '777'
+    become: yes
+
+  - name: Git checkout
+    ansible.builtin.git:
+      repo: 'https://github.com/AnnDevOpsAccount/DevOps-Course-Starter'
+      dest: /opt/to-do-app/app
+      version: main
+      
+  - name: run poetry install command
+    become: yes
+    ansible.builtin.command: /home/ec2-user/.poetry/bin/poetry install
+    args:
+      chdir: /opt/to-do-app/app
+
+  - name: create .env using Jinja2
+    template:
+      src: env_template.j2
+      dest: /opt/to-do-app/app/.env    
+      force: yes
+
+  - name: copy todoapp.service
+    ansible.builtin.copy:
+      src: todoapp.service
+      dest: /etc/systemd/system/
+      mode: '777'
+    become: yes
+      
+  - name: run todoapp.service
+    ansible.builtin.systemd:
+      state: restarted
+      name: todoapp
+      daemon_reload: yes    
+    become: yes
