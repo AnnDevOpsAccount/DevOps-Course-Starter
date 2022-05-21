@@ -95,8 +95,6 @@ For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18
 
 `SSH onto the managed node |(for mod 4 = Managed node IP: 3.9.36.242 = ssh ec2-user@3.9.36.242  )` 
 
-`$ cd /opt/to-do-app/app`
-
 `$ journalctl -u todoapp`
 
 ## To view app running on managed server

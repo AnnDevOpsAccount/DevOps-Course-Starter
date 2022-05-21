@@ -9,12 +9,12 @@
 
 
   tasks:
-  - name: Install the latest versions of git and python
+  - name: Install the latest version of git and python
     become: yes
     yum:
-      name: git
-      state: latest
-      name: python3
+      name: 
+        - git
+        - python3
       state: latest
 
   - name: Create to-do-app folder
@@ -47,7 +47,6 @@
     become: yes
 
   - name: Git checkout
-    become: yes
     ansible.builtin.git:
       repo: 'https://github.com/AnnDevOpsAccount/DevOps-Course-Starter'
       dest: /opt/to-do-app/app
