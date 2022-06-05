@@ -8,7 +8,6 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/inst
 
 # copy across application code
 COPY poetry.lock pyproject.toml todo_app ./
-WORKDIR /todo_app
 COPY ./todo_app /todo_app
 
 # poetry install

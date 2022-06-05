@@ -102,3 +102,11 @@ For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18
 view in browser at port 5000 of managed server for example:
 
 `http://3.9.36.242:5000/`
+
+## To Build Docker Container
+
+`docker build --tag todo-app .`
+
+## To Run Docker Container
+
+`docker run --env-file ./.env -p 5000:5000 todo-app`
