@@ -110,3 +110,6 @@ view in browser at port 5000 of managed server for example:
 ## To Run Docker Container
 
 `docker run --env-file ./.env -p 5000:5000 todo-app`
+
+## ToDo
+workout how to fix my copy commands so that app still runs but dont get duplicate files
