@@ -144,7 +144,7 @@ docker run --env-file ./.env -d -p 5000:5000 todo-app
 docker logs {CONTAINER}
 eg: docker logs frosty_bartik
 ```
-#### To stop Docker Container
+## To stop Docker Container
 ```
 docker stop {CONTAINER}
 eg docker stop frosty_bartik
