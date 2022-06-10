@@ -8,8 +8,6 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/inst
 
 WORKDIR /myApp
 COPY poetry.lock pyproject.toml ./
-# poetry install
-RUN poetry install
 
 # copy across application code
 COPY ./todo_app ./todo_app
@@ -17,14 +15,20 @@ COPY ./todo_app ./todo_app
 # tell the port number the container should expose
 EXPOSE 5000
 
-# PRODUCTION SPECIFIC STEPS
+#--- PRODUCTION SPECIFIC STEPS ----
 FROM base as production
+
+# poetry install, without dev dependencies
+RUN poetry install --no-dev
 
 # Define entrypoint 
 ENTRYPOINT [ "poetry", "run", "gunicorn", "todo_app.app:create_app()", "--bind", "0.0.0.0:5000" ]
 
-# DEVELOPMENT SPECIFIC STEPS
+#--- DEVELOPMENT SPECIFIC STEPS ----
 FROM base as development
+
+# poetry install
+RUN poetry install
 
 # Define entrypoint 
 ENTRYPOINT [ "poetry", "run", "flask", "run",  "--host", "0.0.0.0" ]

@@ -127,10 +127,9 @@ docker run --env-file ./.env -p 5000:5000 todo-app
 
 # multi-stage version
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
-
 ```
 
-#### dev multi-stage version, with a **bind mount** to pick up code changes as they happen:
+#### **Dev** multi-stage version, with a **bind mount** to pick up code changes as they happen:
 ```
 docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,destination=/myApp/todo_app todo-app:dev
 ```
