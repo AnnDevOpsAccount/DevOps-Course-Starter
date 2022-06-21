@@ -122,10 +122,10 @@ docker build --target development --tag todo-app:dev .
 ```
 ## To run Docker Container
 ```bash
-# single version
-docker run --env-file ./.env -p 5000:5000 todo-app
+# dev version
+docker run --env-file ./.env -p 5000:5000 todo-app:dev
 
-# multi-stage version
+# prod version
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
 ```
 
