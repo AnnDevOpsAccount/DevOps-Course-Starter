@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from todo_app.data import trello_items
 from todo_app.flask_config import Config
+from todo_app.data import trello_items
 import os
 import requests
 from todo_app.board import Board

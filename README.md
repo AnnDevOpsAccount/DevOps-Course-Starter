@@ -59,14 +59,16 @@ You should see output similar to the following:
  * Debugger is active!
  * Debugger PIN: 226-556-590
 ```
-Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app. <br>
+<br>
 
-## Student updated version:
+# Ann's additions:
 GitPod URL for Ann's version of code:
 
-https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter 
+https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter <br>
+<br>
 
-## Running the Unit Tests
+# Module 3 - Running the Unit Tests
 
 Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
 
@@ -81,8 +83,10 @@ example:
 Add -v for more verbose test output that is standard eg
 `pytest tests/test_integration.py -v`
 
-Also tests can be run in VSC IDE via Test explorer
+Also tests can be run in VSC IDE via Test explorer <br>
+<br>
 
+# Module 4 - Working With Ansible
 ## To provision a VM from an Ansible Control Node
 
 `ansible-playbook to-do-app-playbook.yml -i inventory.ini`
@@ -101,4 +105,46 @@ For Mod 4 this is in /home/ec2-user/to-do_app_setup on Ansible controller IP: 18
 
 view in browser at port 5000 of managed server for example:
 
-`http://3.9.36.242:5000/`
+`http://3.9.36.242:5000/`<br>
+<br>
+
+
+# Module 5 - Working With Docker
+
+## To build Docker Container
+```bash
+# single version
+docker build --tag todo-app .
+
+# multi-stage versions
+docker build --target production --tag todo-app:prod .
+docker build --target development --tag todo-app:dev .
+```
+## To run Docker Container
+```bash
+# dev version
+docker run --env-file ./.env -p 5000:5000 todo-app:dev
+
+# prod version
+docker run --env-file ./.env -p 5000:5000 todo-app:prod
+```
+
+#### **Dev** multi-stage version, with a **bind mount** to pick up code changes as they happen:
+```
+docker run --env-file ./.env -p 5000:5000 --mount type=bind,source="$(pwd)"/todo_app,destination=/myApp/todo_app todo-app:dev
+```
+#### to run detatched add **-d** eg:
+```
+docker run --env-file ./.env -d -p 5000:5000 todo-app
+```
+
+#### and then to view logs, of detatched running container:
+```
+docker logs {CONTAINER}
+eg: docker logs frosty_bartik
+```
+## To stop Docker Container
+```
+docker stop {CONTAINER}
+eg docker stop frosty_bartik
+```
