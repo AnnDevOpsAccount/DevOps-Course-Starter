@@ -148,3 +148,11 @@ eg: docker logs frosty_bartik
 docker stop {CONTAINER}
 eg docker stop frosty_bartik
 ```
+
+# Module 6 - Architecture Diagrams
+
+See the documentation folder
+
+The diagrams are saved as .jpg files, named per level of The C4 Model - as per https://c4model.com/ 
+
+The source code for these is in same named .drawio files and can be edited using https://app.diagrams.net/
