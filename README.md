@@ -164,3 +164,7 @@ The source code for these is in same named .drawio files and can be edited using
 ```
 docker run --env-file ./.env -p 5000:5000 todo-app:test
 ```
+## New github workflow file
+```
+.github/workflows/ci-pipeline.yml
+```
