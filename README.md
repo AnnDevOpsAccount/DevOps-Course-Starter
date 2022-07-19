@@ -109,24 +109,25 @@ view in browser at port 5000 of managed server for example:
 <br>
 
 
-# Module 5 - Working With Docker
+# Modules 5 & 7 - Working With Docker
 
 ## To build Docker Container
-```bash
-# single version
-docker build --tag todo-app .
-
+```
 # multi-stage versions
 docker build --target production --tag todo-app:prod .
 docker build --target development --tag todo-app:dev .
+docker build --target test --tag todo-app:test .
 ```
 ## To run Docker Container
-```bash
+```
 # dev version
 docker run --env-file ./.env -p 5000:5000 todo-app:dev
 
 # prod version
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
+
+# test version
+docker run --env-file ./.env -p 5000:5000 todo-app:test
 ```
 
 #### **Dev** multi-stage version, with a **bind mount** to pick up code changes as they happen:
@@ -156,3 +157,10 @@ See the documentation folder
 The diagrams are saved as .jpg files, named per level of The C4 Model - as per https://c4model.com/ 
 
 The source code for these is in same named .drawio files and can be edited using https://app.diagrams.net/
+
+# Module 7 - Continuous Integration
+
+## To run the tests from docker
+```
+docker run --env-file ./.env -p 5000:5000 todo-app:test
+```
