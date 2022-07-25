@@ -127,7 +127,7 @@ docker run --env-file ./.env -p 5000:5000 todo-app:dev
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
 
 # test version
-docker run --env-file ./.env -p 5000:5000 todo-app:test
+docker run --env-file ./.env.test todo-app:test
 ```
 
 #### **Dev** multi-stage version, with a **bind mount** to pick up code changes as they happen:
