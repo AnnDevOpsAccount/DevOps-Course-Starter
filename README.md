@@ -165,6 +165,8 @@ The source code for these is in same named .drawio files and can be edited using
 docker run --env-file ./.env.test todo-app:test
 ```
 ## New github workflow file
+
+This dictates the pipelines that run on GitHub to test every branch
 ```
 .github/workflows/ci-pipeline.yml
 ```
