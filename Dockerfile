@@ -32,3 +32,15 @@ RUN poetry install
 
 # Define entrypoint 
 ENTRYPOINT [ "poetry", "run", "flask", "run",  "--host", "0.0.0.0" ]
+
+#--- TEST SPECIFIC STEPS ----
+FROM base as test
+
+# poetry install
+RUN poetry install
+
+# copy across tests 
+COPY ./tests ./tests
+
+# Define entrypoint 
+ENTRYPOINT ["poetry", "run", "pytest", "-v"]
