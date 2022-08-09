@@ -20,6 +20,11 @@ jobs:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
+    if: github.event == 'push' && github.ref == 'refs/heads/module8'
     steps:
-    - run: echo "Publishing!"
-      if: github.event == 'push' && github.ref == 'refs/heads/module8'
+    - uses: actions/checkout@v2
+    - env: 
+        DOCKER_HUB_USER: anndevops123
+        DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PW}}
+      run: |
+        docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
