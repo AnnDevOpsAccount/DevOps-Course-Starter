@@ -16,15 +16,18 @@ jobs:
     - uses: actions/checkout@v2
     - run: docker build --target test --tag todo-app:test .
     - run: docker run --env-file ./.env.test todo-app:test
-  publishing:
+  publish:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/module8'
     steps:
     - uses: actions/checkout@v2
-    - env: 
+    - name: sign into Docker
+      env: 
         DOCKER_HUB_USER: anndevops123
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PW}}
       run: |
         docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+    - name: build prod image
+      run: docker build . --file Dockerfile --target production --tag todo-app:prod/$GITHUB_SHA
