@@ -32,5 +32,4 @@ jobs:
     - name: build prod image
       run: docker build . --file Dockerfile --target production --tag todo-app:prod-$GITHUB_SHA
     - name: Push to Docker Hub
-      run: |
-        docker push $DOCKER_HUB_USER/ann-todo-app
+      run: docker push anndevops123/ann-todo-app
