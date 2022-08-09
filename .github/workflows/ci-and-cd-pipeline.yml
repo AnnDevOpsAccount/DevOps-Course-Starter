@@ -25,11 +25,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: sign into Docker
       env: 
-        DOCKER_HUB_USER: ${{secrets.DOCKER_HUB_USER}}
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PW}}
       run: |
-        docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+        docker login -u anndevops123 -p $DOCKER_HUB_PASSWORD
     - name: build prod image
-      run: docker build . --file Dockerfile --target production --tag todo-app:prod-$GITHUB_SHA
+      run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
     - name: Push to Docker Hub
       run: docker push anndevops123/ann-todo-app
