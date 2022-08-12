@@ -39,3 +39,5 @@ jobs:
         heroku_app_name: ann-todo-app
         heroku_email: ann.davey@lv.co.uk
         usedocker: true
+      env:
+        HD_PORT: "5000"
