@@ -15,15 +15,6 @@ COPY ./todo_app ./todo_app
 # tell the port number the container should expose
 EXPOSE 5000
 
-#--- PRODUCTION SPECIFIC STEPS ----
-FROM base as production
-
-# poetry install, without dev dependencies
-RUN poetry install --no-dev
-
-# Define entrypoint 
-ENTRYPOINT [ "poetry", "run", "gunicorn", "todo_app.app:create_app()", "--bind", "0.0.0.0:5000" ]
-
 #--- DEVELOPMENT SPECIFIC STEPS ----
 FROM base as development
 
@@ -44,3 +35,12 @@ COPY ./tests ./tests
 
 # Define entrypoint 
 ENTRYPOINT ["poetry", "run", "pytest", "-v"]
+
+#--- PRODUCTION SPECIFIC STEPS ----
+FROM base as production
+
+# poetry install, without dev dependencies
+RUN poetry install --no-dev
+
+# Define entrypoint 
+ENTRYPOINT [ "poetry", "run", "gunicorn", "todo_app.app:create_app()", "--bind", "0.0.0.0:5000" ]
