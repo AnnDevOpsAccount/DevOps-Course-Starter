@@ -42,5 +42,7 @@ FROM base as production
 # poetry install, without dev dependencies
 RUN poetry install --no-dev
 
+RUN pip install gunicorn
+
 # Define entrypoint 
 CMD poetry run gunicorn "todo_app.app:create_app()" --bind 0.0.0.0:5000
