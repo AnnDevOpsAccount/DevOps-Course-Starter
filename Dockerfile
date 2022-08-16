@@ -39,10 +39,8 @@ ENTRYPOINT ["poetry", "run", "pytest", "-v"]
 #--- PRODUCTION SPECIFIC STEPS ----
 FROM base as production
 
-# poetry install, without dev dependencies
-RUN poetry install --no-dev
+# poetry setup
+RUN poetry config virtualenvs.create false --local && poetry install
 
-RUN pip install gunicorn
-
-# Define entrypoint 
+# start app run command
 CMD poetry run gunicorn "todo_app.app:create_app()" --bind 0.0.0.0:5000
