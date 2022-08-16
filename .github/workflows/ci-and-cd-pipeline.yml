@@ -28,6 +28,7 @@ jobs:
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PW}}
       run: |
         docker login -u anndevops123 -p $DOCKER_HUB_PASSWORD
+        docker run --env-file ./.env -p 5000:5000 todo-app:prod
     - name: build prod image
       run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
     - name: Push to Docker Hub
