@@ -43,4 +43,4 @@ FROM base as production
 RUN poetry install --no-dev
 
 # Define entrypoint 
-ENTRYPOINT [ "poetry", "run", "gunicorn", "todo_app.app:create_app()", "--bind", "0.0.0.0:5000" ]
+CMD poetry run gunicorn "todo_app.app:create_app()" --bind 0.0.0.0:5000
