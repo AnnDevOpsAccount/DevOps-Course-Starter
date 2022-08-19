@@ -176,11 +176,9 @@ See the .yml file which stored at below location, which dictates the pipelines t
 
 The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) has been enhanced to provide continuous deployment to **Heroku** hosting platform, using an image pushed to **Docker Hub**.
 This deployment is conditional. The default is for it to be conditonal upon:
-1) project built and tests passed
-2) the git action is a pull or push
-3) target is main branch - although this can be changed to a feature branch if needed, for example: 
-```
-      if: github.ref == 'refs/heads/module8' 
+1) the git action is a pull or push
+2) project built and tests passed
+3) target is main branch or module8 branch
 ```
 ### Secrets
 Secrets have been stored in the **GitHub repository** to store credentials to facilitate:
