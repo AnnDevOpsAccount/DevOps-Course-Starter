@@ -20,7 +20,7 @@ jobs:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/module8') && github.ref == 'refs/heads/module8' }}
+    if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/module8') && github.event == 'push' }}
     steps:
     - uses: actions/checkout@v2
     - name: sign into Docker
