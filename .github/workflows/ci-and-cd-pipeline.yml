@@ -20,7 +20,7 @@ jobs:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ github.event == 'push' || github.event == 'pull_request')}}
+    if: ${{ github.event == 'push' || github.event == 'pull_request'}}
     steps:
     - uses: actions/checkout@v2
     - name: sign into Docker
