@@ -178,7 +178,7 @@ The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) ha
 This deployment is conditional. The default is for it to be conditonal upon:
 1) project built and tests passed
 2) the git action is a pull or push
-3) target is master branch - although this can be changed to a feature branch if needed, for example: 
+3) target is main branch - although this can be changed to a feature branch if needed, for example: 
 ```
       if: github.ref == 'refs/heads/module8' 
 ```
