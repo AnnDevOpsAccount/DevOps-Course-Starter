@@ -32,12 +32,10 @@ jobs:
       run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
     - name: Push to Docker Hub
       run: docker push anndevops123/ann-todo-app
-    - name: login to Heroku
+    - name: login to Heroku and release app
       uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{secrets.HEROKU_KEY}}
         heroku_app_name: ann-todo-app
         heroku_email: ann.davey@lv.co.uk
         usedocker: true
-      env:
-        HD_PORT: "5000"
