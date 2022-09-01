@@ -1,0 +1,41 @@
+name: Continuous Integration and Continuous Delivery
+on: 
+  push:
+    paths-ignore:
+      - 'README.md'
+      - 'documentation/**'      
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'documentation/**'
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build --target test --tag todo-app:test .
+    - run: docker run --env-file ./.env.test todo-app:test
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/module8') }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: sign into Docker
+      env: 
+        DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PW}}
+      run: |
+        docker login -u anndevops123 -p $DOCKER_HUB_PASSWORD
+    - name: build prod image
+      run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
+    - name: Push to Docker Hub
+      run: docker push anndevops123/ann-todo-app
+    - name: login to Heroku and release app
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_KEY}}
+        heroku_app_name: ann-todo-app
+        heroku_email: ann.davey@lv.co.uk
+        usedocker: true

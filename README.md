@@ -68,7 +68,7 @@ GitPod URL for Ann's version of code:
 https://gitpod.io/#https://github.com/AnnDevOpsAccount/DevOps-Course-Starter <br>
 <br>
 
-# Module 3 - Running the Unit Tests
+# Running the Unit Tests (Module 3)
 
 Unit Tests are writtent in pytest - see: https://docs.pytest.org/en/6.2.x/index.html 
 
@@ -86,7 +86,7 @@ Add -v for more verbose test output that is standard eg
 Also tests can be run in VSC IDE via Test explorer <br>
 <br>
 
-# Module 4 - Working With Ansible
+# Working With Ansible (Module 4)
 ## To provision a VM from an Ansible Control Node
 
 `ansible-playbook to-do-app-playbook.yml -i inventory.ini`
@@ -109,7 +109,7 @@ view in browser at port 5000 of managed server for example:
 <br>
 
 
-# Modules 5 & 7 - Working With Docker
+# Working With Docker (Modules 5 & 7)
 
 ## To build Docker Container
 ```
@@ -150,7 +150,7 @@ docker stop {CONTAINER}
 eg docker stop frosty_bartik
 ```
 
-# Module 6 - Architecture Diagrams
+# Architecture Diagrams (Module 6)
 
 See the documentation folder
 
@@ -158,15 +158,53 @@ The diagrams are saved as .jpg files, named per level of The C4 Model - as per h
 
 The source code for these is in same named .drawio files and can be edited using https://app.diagrams.net/
 
-# Module 7 - Continuous Integration
+# Continuous Integration (Module 7)
 
 ## To run the tests from docker
 ```
 docker run --env-file ./.env.test todo-app:test
 ```
-## New github workflow file
+## github workflow file 
 
-This dictates the pipelines that run on GitHub to test every branch
+### ...was created to run the unit tests: 
+
+See the .yml file which stored at below location, which dictates the pipelines that run on GitHub to test every branch
 ```
-.github/workflows/ci-pipeline.yml
+.github/workflows/
 ```
+# Continuous Delivery (Module 8)
+
+The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) has been enhanced to provide continuous deployment to **Heroku** hosting platform, using an image pushed to **Docker Hub**.
+This deployment is conditional. The default is for it to be conditonal upon:
+1) the git action is a pull or push
+2) project built and tests passed
+3) target is main branch or module8 branch
+```
+### Secrets
+Secrets have been stored in the **GitHub repository** to store credentials to facilitate:
+* Docker Hub signon
+* Heroku athentication - via an auth token
+* todo_app .env variables - which relate to the Trello data used in the app
+
+These secrets are only available to the GitHub repository owner, not to others who it is shared with.
+
+
+### URI to access the deployed app:
+  https://ann-todo-app.herokuapp.com 
+
+### GitHub Actions Logs
+can be viewed at https://github.com/AnnDevOpsAccount/DevOps-Course-Starter/actions
+
+### Heroku logs
+can be viewed, from a gitpod terminal, as follows. This is useful for investigating any failed deployment:
+```
+(to install heroku:)
+  curl https://cli-assets.heroku.com/install.sh | sh
+
+(to login, using -i to force it to propmt for password within the terminal:)  
+  heroku login -i
+
+(to view the logfile to get info about app startup and any associated issues:)
+  heroku logs --tail --app ann-todo-app
+```
+### 
