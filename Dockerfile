@@ -40,7 +40,8 @@ ENTRYPOINT ["poetry", "run", "pytest", "-v"]
 FROM base as production
 
 # poetry setup
-RUN poetry config virtualenvs.create false --local && poetry install
+RUN poetry config virtualenvs.create false --local && poetry install --no-dev
 
 # start app run command
+ENV PORT=5000
 CMD poetry run gunicorn "todo_app.app:create_app()" --bind 0.0.0.0:$PORT
