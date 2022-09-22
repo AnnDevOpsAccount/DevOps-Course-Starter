@@ -36,4 +36,4 @@ jobs:
       env: 
         AZURE_WEBHOOK: ${{secrets.AZURE_WEBHOOK_URL}}
       run: |
-        curl -dH -X POST $AZURE_WEBHOOK
+        curl -dH -X POST $AZURE_WEBHOOK-XXX
