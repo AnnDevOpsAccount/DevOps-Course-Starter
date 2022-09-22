@@ -20,7 +20,7 @@ jobs:
     name: Publish
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/module8') }}
+    if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/module9') }}
     steps:
     - uses: actions/checkout@v2
     - name: sign into Docker
@@ -32,10 +32,8 @@ jobs:
       run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
     - name: Push to Docker Hub
       run: docker push anndevops123/ann-todo-app
-    - name: login to Heroku and release app
-      uses: akhileshns/heroku-deploy@v3.12.12
-      with:
-        heroku_api_key: ${{secrets.HEROKU_KEY}}
-        heroku_app_name: ann-todo-app
-        heroku_email: ann.davey@lv.co.uk
-        usedocker: true
+    - name: use Azure webhook to refresh and deploy the updated app
+      env: 
+        AZURE_WEBHOOK: ${{secrets.AZURE_WEBHOOK_URL}}
+      run: |
+        curl -dH -X POST $AZURE_WEBHOOK
