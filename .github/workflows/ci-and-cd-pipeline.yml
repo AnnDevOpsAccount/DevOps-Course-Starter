@@ -36,4 +36,4 @@ jobs:
       env: 
         AZURE_WEBHOOK: ${{secrets.AZURE_WEBHOOK_URL}}
       run: |
-        curl -dH -X POST https://\$annd0409DevOpsToDoApp:HgKHmP0sLkREYlcjlWbgX7BQsenjMEosNExv55tjvmxufBRldLspBuju5qt0@annd0409devopstodoapp.scm.azurewebsites.net/api/registry/webhook
+        curl -dH -X POST $AZURE_WEBHOOK
