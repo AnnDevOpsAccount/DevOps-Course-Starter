@@ -32,9 +32,5 @@ jobs:
       run: docker build . --file Dockerfile --target production --tag anndevops123/ann-todo-app
     - name: Push to Docker Hub
       run: docker push anndevops123/ann-todo-app
-    - name: DEBUG STEP
-      run: echo "XXX DEBUG ${{secrets.AZURE_WEBHOOK_URL}}"
-      env: 
-        AZURE_WEBHOOK: ${{secrets.AZURE_WEBHOOK_URL}}
     - name: use Azure webhook to refresh and deploy the updated app
       run: curl -dH -X POST ${{secrets.AZURE_WEBHOOK_URL}}
