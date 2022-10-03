@@ -174,37 +174,32 @@ See the .yml file which stored at below location, which dictates the pipelines t
 ```
 # Continuous Delivery (Module 8)
 
-The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) has been enhanced to provide continuous deployment to **Heroku** hosting platform, using an image pushed to **Docker Hub**.
-This deployment is conditional. The default is for it to be conditonal upon:
+The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) was enhanced to provide continuous deployment to **Heroku** hosting platform, using an image pushed to **Docker Hub** but the use of Heroku was removed in module 9, when the app was re-platformed onto Azure.
+
+# Cloud Infrastructure (Module 9)
+### Continuous deployment
+The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) now provides continuous deployment to **Azure** hosting platform, using the latest prod image pushed to **Docker Hub**.
+This deployment is conditional upon:
 1) the git action is a pull or push
 2) project built and tests passed
-3) target is main branch or module8 branch
-```
-### Secrets
-Secrets have been stored in the **GitHub repository** to store credentials to facilitate:
-* Docker Hub signon
-* Heroku athentication - via an auth token
-* todo_app .env variables - which relate to the Trello data used in the app
+3) target is main branch or module9 branch
+
+### Secrets:
+Secrets have been stored in
+#### 1) the **GitHub repository** :
+* Docker Hub signon - used to publish updated app
+* Azure Webhook url - used to trigger Arure to collect and load updated app version 
 
 These secrets are only available to the GitHub repository owner, not to others who it is shared with.
+### 2) the **App within Azure** to store env values of:
+* various Trello keys/ids
+* app port number (5000)
 
 
-### URI to access the deployed app:
-  https://ann-todo-app.herokuapp.com 
+### URI to access the deployed app: 
+  https://annd0409devopstodoapp.azurewebsites.net
 
-### GitHub Actions Logs
+### GitHub Actions Logs:
 can be viewed at https://github.com/AnnDevOpsAccount/DevOps-Course-Starter/actions
 
-### Heroku logs
-can be viewed, from a gitpod terminal, as follows. This is useful for investigating any failed deployment:
-```
-(to install heroku:)
-  curl https://cli-assets.heroku.com/install.sh | sh
 
-(to login, using -i to force it to propmt for password within the terminal:)  
-  heroku login -i
-
-(to view the logfile to get info about app startup and any associated issues:)
-  heroku logs --tail --app ann-todo-app
-```
-### 
