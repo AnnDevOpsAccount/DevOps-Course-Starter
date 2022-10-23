@@ -30,7 +30,7 @@ def create_app():
         trello_items.add_item(board , request.form['TaskName'])
 
         #WIP lets try also add in Mongo
-        mongo_items.add_item(request.form['TaskName'])
+        mongo_items.add_item(app, request.form['TaskName'])
         return index()
         
     @app.route('/endTask', methods=['POST'])

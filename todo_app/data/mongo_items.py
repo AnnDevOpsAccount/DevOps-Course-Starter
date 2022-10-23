@@ -1,10 +1,13 @@
 import pymongo
+from flask import Flask
+from todo_app.flask_config import Config
 
-client = pymongo.MongoClient("mongodb://aaaddd000444000999:wGsud7sTDAMvHb7qwo5nnpcP2Mok8O0bmY2uuEPuNnViIv8vqv5sTlnmC5XkwSOvVbH4dhIMIPt5oDymzDAToQ==@aaaddd000444000999.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@aaaddd000444000999@")
-db = client['ad0409todoappdb']
-collection = db['Items']
 
-def add_item( title):
+
+def add_item( app, title):
+    client = pymongo.MongoClient(app.config['MONGO_CONNECTION_STRING'])
+    db = client[app.config['MONGO_DATABASE']]
+    collection = db['Items']
     item1 = {"title": title, "status:": "To Do"}
     collection.insert_one(item1)
 

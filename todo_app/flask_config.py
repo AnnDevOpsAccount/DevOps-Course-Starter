@@ -23,3 +23,11 @@ class Config:
         self.TRELLO_DONE_LIST_ID = os.environ.get('TRELLO_DONE_LIST_ID')     
         if not self.TRELLO_DONE_LIST_ID:
             raise ValueError("No TRELLO_DONE_LIST_ID set for Flask application. Did you follow the setup instructions?")       
+
+        self.MONGO_CONNECTION_STRING = os.environ.get('MONGO_CONNECTION_STRING')     
+        if not self.MONGO_CONNECTION_STRING:
+            raise ValueError("No MONGO_CONNECTION_STRING set for Flask application. Did you follow the setup instructions?")      
+                    
+        self.MONGO_DATABASE = os.environ.get('MONGO_DATABASE')     
+        if not self.MONGO_DATABASE:
+            raise ValueError("No MONGO_DATABASE set for Flask application. Did you follow the setup instructions?")      
