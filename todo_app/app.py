@@ -31,11 +31,16 @@ def create_app():
 
         #WIP lets try also add in Mongo
         mongo_items.add_item(app, request.form['TaskName'])
+
         return index()
         
     @app.route('/endTask', methods=['POST'])
     def end_task():
-        trello_items.complete_item(board, request.form['TaskNo'])
+       # trello_items.complete_item(board, request.form['TaskNo'])
+
+        #WIP lets try  update in Mongo
+        mongo_items.complete_item(app, request.form['TaskName'])
+
         return index()
 
     return app
