@@ -19,10 +19,6 @@ def add_item(app, title):
     newItem = {"title": title, "status": "To Do"}
     collection.insert_one(newItem)
 
-    # print it to see if it worked?
-    for x in collection.find():
-        print(x)
-
 def complete_item(app, title):
     client = pymongo.MongoClient(app.config['MONGO_CONNECTION_STRING'])
     db = client[app.config['MONGO_DATABASE']]
@@ -31,7 +27,3 @@ def complete_item(app, title):
     collection.delete_one(myquery)
     newItem = {"title": title, "status": "Done"}
     collection.insert_one(newItem)
-
-    # print it to see if it worked?
-    for x in collection.find():
-        print(x)
