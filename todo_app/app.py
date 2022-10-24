@@ -22,7 +22,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        item_view_model = ViewModel(board)
+        item_view_model = ViewModel(app)
         return render_template('index.html', view_model=item_view_model)
 
     @app.route('/addTask', methods=['POST'])
