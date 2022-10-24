@@ -1,6 +1,7 @@
 import os
 import pytest
 import requests 
+import mongomock
 from todo_app import app
 from dotenv import load_dotenv, find_dotenv
 
@@ -10,12 +11,13 @@ def client():
     file_path = find_dotenv('.env.test')
     load_dotenv(file_path, override=True)
 
-    # Create the new app.
-    test_app = app.create_app()
+    with mongomock.patch(servers=(('fakemongo.com', 27017),)):
+        # Create the new app.
+        test_app = app.create_app()
 
-    # Use the app to create a test_client that can be used in our tests.
-    with test_app.test_client() as client:
-        yield client
+        # Use the app to create a test_client that can be used in our tests.
+        with test_app.test_client() as client:
+            yield client
 
 class StubResponse():
     def __init__(self, fake_response_data):

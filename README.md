@@ -36,11 +36,8 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 ### Values to add to local .env file (not stored in git - for security - so maintain a personal local copy):
 
-* TRELLO_BOARD_KEY = "{key}"
-* TRELLO_BOARD_TOKEN = "{token}"
-* TRELLO_BOARD_ID = "{boardId}"
-* TRELLO_TO_DO_LIST_ID = "{toDoListId}"
-* TRELLO_DONE_LIST_ID = "{doneListId}"
+* MONGO_CONNECTION_STRING={mongoConnectionString}
+* MONGO_DATABASE={mongoDatabase}
 
 ## Running the App
 
