@@ -155,6 +155,8 @@ The diagrams are saved as .jpg files, named per level of The C4 Model - as per h
 
 The source code for these is in same named .drawio files and can be edited using https://app.diagrams.net/
 
+NOTE - these are yet to be updated for the switch from storing tasks in Trello to storing them in mongo DB on Azure 
+
 # Continuous Integration (Module 7)
 
 ## To run the tests from docker
@@ -179,7 +181,7 @@ The GitHub actions workflow file ( .github/workflows/ci-and-cd-pipeline.yml ) no
 This deployment is conditional upon:
 1) the git action is a pull or push
 2) project built and tests passed
-3) target is main branch or module9 branch
+3) target is main branch or module9/module10 branch
 
 ### Secrets:
 Secrets have been stored in
@@ -189,7 +191,7 @@ Secrets have been stored in
 
 These secrets are only available to the GitHub repository owner, not to others who it is shared with.
 ### 2) the **App within Azure** to store env values of:
-* various Trello keys/ids
+* mongo DB / Azure database access info
 * app port number (5000)
 
 
@@ -199,4 +201,5 @@ These secrets are only available to the GitHub repository owner, not to others w
 ### GitHub Actions Logs:
 can be viewed at https://github.com/AnnDevOpsAccount/DevOps-Course-Starter/actions
 
-
+# Data and Security I (Module 10)
+Amended the app to use mongo BB on Azure, instead of Trello API, for store/retrieve to-do task info 

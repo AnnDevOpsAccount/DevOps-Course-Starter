@@ -39,4 +39,9 @@ def test_index_page(monkeypatch, client):
     response = client.get('/')
 
     assert response.status_code == 200
+
+    # ToDo fix this test so that it actually does mock some task data being retrieved app show on app page
+    # and has assertion(s) proving this
+    # currently the app does spin up but with empty task lists - I am going to need help or quite a bit more time to understand mongo mock
+
     #assert 'wash the floor' in response.data.decode()
