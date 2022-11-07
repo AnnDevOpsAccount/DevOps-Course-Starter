@@ -17,7 +17,7 @@
             <td>{{item.status}}</td>
             <td>
                 <form action="/endTask" method="post">    
-                  <input type="hidden" name="TaskNo" value="{{item.id}}" required>
+                  <input type="hidden" name="TaskName" value="{{item.title}}" required>
                   <input type="submit" value="Done">
                 </form>                   
             </td>    
@@ -37,7 +37,7 @@
             <td>{{item.status}}</td>
             <td>
                 <form action="/endTask" method="post">    
-                  <input type="hidden" name="TaskNo" value="{{item.id}}" required>
+                  <input type="hidden" name="TaskName" value="{{item.title}}" required>
                   <input type="submit" value="Done">
                 </form>                   
             </td>    

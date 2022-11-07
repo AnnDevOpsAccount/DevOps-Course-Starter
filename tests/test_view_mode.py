@@ -1,10 +1,17 @@
 import pytest
-from todo_app.board import Board
-from todo_app.data import trello_items
+from todo_app.data import mongo_items
 from todo_app.viewModel import ViewModel
 from todo_app.item import Item
+from todo_app import app
+from dotenv import load_dotenv, find_dotenv
 
-TEST_BOARD = Board ('ID', 'KEY', 'TOKEN', 'TO_DO_LIST_ID' , 'DONE_LIST_ID')
+
+
+def get_test_app():
+    # Use our test integration config instead of the 'real' version
+    file_path = find_dotenv('.env.test')
+    load_dotenv(file_path, override=True)
+    return app.create_app()
 
 def get_test_items():
     test_items = [
@@ -17,14 +24,14 @@ def get_test_items():
         ]
     return test_items
 
-def mock_get_items(board):
+def mock_get_items(app):
     return get_test_items()  
 
 
 def set_up_view_model (monkeypatch):
-    
-    monkeypatch.setattr(trello_items, 'get_items', mock_get_items)
-    item_view_model = ViewModel(TEST_BOARD)
+    TEST_APP = get_test_app()
+    monkeypatch.setattr(mongo_items, 'get_items', mock_get_items)
+    item_view_model = ViewModel(TEST_APP)
     return (item_view_model)
 
 

@@ -1,9 +1,8 @@
-from todo_app.data import trello_items
+from todo_app.data import mongo_items
 
 class ViewModel:
-    def __init__(self, board):
-
-        self._items = trello_items.get_items( board )
+    def __init__(self, app):
+        self._items = mongo_items.get_items( app )
     @property
     def items(self):
         return self._items
