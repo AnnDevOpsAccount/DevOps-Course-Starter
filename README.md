@@ -202,4 +202,4 @@ These secrets are only available to the GitHub repository owner, not to others w
 can be viewed at https://github.com/AnnDevOpsAccount/DevOps-Course-Starter/actions
 
 # Data and Security I (Module 10)
-Amended the app to use mongo BB on Azure, instead of Trello API, for store/retrieve to-do task info 
+Amended the app to use mongo DB on Azure, instead of Trello API, for store/retrieve to-do task info 
