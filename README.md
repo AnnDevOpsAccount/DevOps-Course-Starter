@@ -38,6 +38,8 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 * MONGO_CONNECTION_STRING={mongoConnectionString}
 * MONGO_DATABASE={mongoDatabase}
+* GITHUB_CLIENT_ID={githubClientId}
+* GITHUB_CLIENT_SECRET={githubClientSecret}
 
 ## Running the App
 
@@ -202,4 +204,11 @@ These secrets are only available to the GitHub repository owner, not to others w
 can be viewed at https://github.com/AnnDevOpsAccount/DevOps-Course-Starter/actions
 
 # Data and Security I (Module 10)
-Amended the app to use mongo BB on Azure, instead of Trello API, for store/retrieve to-do task info 
+Amended the app to use mongo DB on Azure, instead of Trello API, for store/retrieve to-do task info 
+
+# Data and Security II (Module 11)
+
+Amended the app to use Github to authorise users.
+Additional values added to .env - not in git so a local copy is required, for local run 
+  * GITHUB_CLIENT_ID={githubClientId}
+  * GITHUB_CLIENT_SECRET={githubClientSecret}
