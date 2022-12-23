@@ -29,6 +29,23 @@ def create_app():
         item_view_model = ViewModel(app)
         return render_template('index.html', view_model=item_view_model)
 
+    @app.route('/callback')
+    def callback():
+        authorisation_code = request.args['code']
+        access_token_url = f"https://github.com/login/oauth/access_token"
+        query_params = {
+            "client_id": os.getenv('GITHUB_CLIENT_ID'),
+            "client_secret": os.getenv('GITHUB_CLIENT_SECRET'),
+            "code": authorisation_code
+        }
+        headers = { "Accept": "application/json" }
+        access_token_response = requests.post(access_token_url, params = query_params, headers = headers)
+        access_token = access_token_response.json()['access_token']
+        user_info_url = "https://api.github.com/user"
+        auth_headers = { "Authorization": f"Bearer {access_token}" }
+        user = requests.get(user_info_url, headers = auth_headers)
+        print(user)
+
     @app.route('/addTask', methods=['POST'])
     @login_required
     def add_task():
